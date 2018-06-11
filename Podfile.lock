@@ -1,0 +1,16 @@
+PODS:
+  - OpenBack (1.7.0)
+
+DEPENDENCIES:
+  - OpenBack
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - OpenBack
+
+SPEC CHECKSUMS:
+  OpenBack: 04a8bd678690f4b0f827e1debd8f2d4dbcda17e1
+
+PODFILE CHECKSUM: 4d3e28d24503c048fe8026b1693e5d23d54bf124
+
+COCOAPODS: 1.5.3
