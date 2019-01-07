@@ -22,7 +22,8 @@
         kOBKConfigEnableAlertNotifications: @(YES),
         kOBKConfigEnableInAppNotifications: @(YES),
         kOBKConfigEnableRemoteNotifications: @(YES),
-        kOBKConfigRequestAlertNotificationsAuthorization: @(YES)
+        kOBKConfigRequestAlertNotificationsAuthorization: @(YES),
+        kOBKConfigLogLevel: @(kOBKLogLevelVerbose)
     };
     
     NSError *error = nil;
@@ -65,6 +66,5 @@
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
-
 
 @end

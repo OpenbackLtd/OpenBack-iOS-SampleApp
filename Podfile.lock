@@ -1,5 +1,5 @@
 PODS:
-  - OpenBack (1.7.0)
+  - OpenBack (1.8.4)
 
 DEPENDENCIES:
   - OpenBack
@@ -9,7 +9,7 @@ SPEC REPOS:
     - OpenBack
 
 SPEC CHECKSUMS:
-  OpenBack: 04a8bd678690f4b0f827e1debd8f2d4dbcda17e1
+  OpenBack: 31a215f9c4f250417b586ddb47525a0a07829b8a
 
 PODFILE CHECKSUM: 4d3e28d24503c048fe8026b1693e5d23d54bf124
 

@@ -11,9 +11,10 @@
 		377B45B520CEBEBC00B32A9B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 377B45B420CEBEBC00B32A9B /* AppDelegate.m */; };
 		377B45B820CEBEBC00B32A9B /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 377B45B720CEBEBC00B32A9B /* ViewController.m */; };
 		377B45BB20CEBEBC00B32A9B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 377B45B920CEBEBC00B32A9B /* Main.storyboard */; };
-		377B45BD20CEBEBD00B32A9B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 377B45BC20CEBEBD00B32A9B /* Assets.xcassets */; };
 		377B45C020CEBEBD00B32A9B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 377B45BE20CEBEBD00B32A9B /* LaunchScreen.storyboard */; };
 		377B45C320CEBEBD00B32A9B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 377B45C220CEBEBD00B32A9B /* main.m */; };
+		377BE41F21E3987D00B3ED47 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 377BE41E21E3987D00B3ED47 /* Assets.xcassets */; };
+		377BE42221E398A500B3ED47 /* AppInboxViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 377BE42021E398A500B3ED47 /* AppInboxViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,11 +24,13 @@
 		377B45B620CEBEBC00B32A9B /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		377B45B720CEBEBC00B32A9B /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		377B45BA20CEBEBC00B32A9B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		377B45BC20CEBEBD00B32A9B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		377B45BF20CEBEBD00B32A9B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		377B45C120CEBEBD00B32A9B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		377B45C220CEBEBD00B32A9B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		377B45C920CEC2F300B32A9B /* SampleApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SampleApp.entitlements; sourceTree = "<group>"; };
+		377BE41E21E3987D00B3ED47 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		377BE42021E398A500B3ED47 /* AppInboxViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppInboxViewController.m; sourceTree = "<group>"; };
+		377BE42121E398A500B3ED47 /* AppInboxViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppInboxViewController.h; sourceTree = "<group>"; };
 		3B6F3CE702955B42A3CBC6EC /* Pods-SampleApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SampleApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-SampleApp/Pods-SampleApp.release.xcconfig"; sourceTree = "<group>"; };
 		8A51EFB8FD432A9618AC79FD /* Pods-SampleApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SampleApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SampleApp/Pods-SampleApp.debug.xcconfig"; sourceTree = "<group>"; };
 		B6A2BA38469B55549B4EE32C /* Pods_SampleApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SampleApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -74,13 +77,15 @@
 		377B45B220CEBEBB00B32A9B /* SampleApp */ = {
 			isa = PBXGroup;
 			children = (
+				377BE41E21E3987D00B3ED47 /* Assets.xcassets */,
 				377B45C920CEC2F300B32A9B /* SampleApp.entitlements */,
 				377B45B320CEBEBC00B32A9B /* AppDelegate.h */,
 				377B45B420CEBEBC00B32A9B /* AppDelegate.m */,
 				377B45B620CEBEBC00B32A9B /* ViewController.h */,
 				377B45B720CEBEBC00B32A9B /* ViewController.m */,
+				377BE42121E398A500B3ED47 /* AppInboxViewController.h */,
+				377BE42021E398A500B3ED47 /* AppInboxViewController.m */,
 				377B45B920CEBEBC00B32A9B /* Main.storyboard */,
-				377B45BC20CEBEBD00B32A9B /* Assets.xcassets */,
 				377B45BE20CEBEBD00B32A9B /* LaunchScreen.storyboard */,
 				377B45C120CEBEBD00B32A9B /* Info.plist */,
 				377B45C220CEBEBD00B32A9B /* main.m */,
@@ -165,7 +170,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				377B45C020CEBEBD00B32A9B /* LaunchScreen.storyboard in Resources */,
-				377B45BD20CEBEBD00B32A9B /* Assets.xcassets in Resources */,
+				377BE41F21E3987D00B3ED47 /* Assets.xcassets in Resources */,
 				377B45BB20CEBEBC00B32A9B /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -219,6 +224,7 @@
 				377B45B820CEBEBC00B32A9B /* ViewController.m in Sources */,
 				377B45C320CEBEBD00B32A9B /* main.m in Sources */,
 				377B45B520CEBEBC00B32A9B /* AppDelegate.m in Sources */,
+				377BE42221E398A500B3ED47 /* AppInboxViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
