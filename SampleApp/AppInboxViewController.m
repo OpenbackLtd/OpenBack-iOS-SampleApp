@@ -57,6 +57,13 @@
     }];
 }
 
+- (void)reloadInboxMessages {
+    [self.inbox getAllMessages:^(NSArray<OpenBackAppInboxMessage *> * _Nonnull messages) {
+        self.messages = messages;
+        [self.tableView reloadData];
+    }];
+}
+
 #pragma mark - UITableView Delegate
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -89,28 +96,27 @@
 
 - (BOOL)tableView:(UITableView *)tableView shouldHighlightRowAtIndexPath:(NSIndexPath *)indexPath {
     OpenBackAppInboxMessage *message = [self.messages objectAtIndex:indexPath.row];
-    return message.isActionable;
-    return NO;
+    return message.isActionable || !message.isRead;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     OpenBackAppInboxMessage *message = [self.messages objectAtIndex:indexPath.row];
-    [self.inbox executeMessage:message completion:^(NSError * _Nullable error) {
-        [self.inbox getAllMessages:^(NSArray<OpenBackAppInboxMessage *> * _Nonnull messages) {
-            self.messages = messages;
-            [self.tableView reloadData];
+    if (message.isActionable) {
+        [self.inbox executeMessage:message completion:^(NSError * _Nullable error) {
+            [self reloadInboxMessages];
         }];
-    }];
+    } else {
+        [self.inbox markMessageAsRead:message completion:^(NSError * _Nullable error) {
+            [self reloadInboxMessages];
+        }];
+    }
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         [self.inbox removeMessage:self.messages[indexPath.row] completion:^(NSError * _Nullable error) {
-            [self.inbox getAllMessages:^(NSArray<OpenBackAppInboxMessage *> * _Nonnull messages) {
-                self.messages = messages;
-                [self.tableView reloadData];
-            }];
+            [self reloadInboxMessages];
         }];
     }
 }
@@ -118,27 +124,15 @@
 #pragma mark - Inbox Delegate
 
 - (void)appInboxMessageRead:(OpenBackAppInboxMessage *)message {
-    // Lazy full refresh
-    [self.inbox getAllMessages:^(NSArray<OpenBackAppInboxMessage *> * _Nonnull messages) {
-        self.messages = messages;
-        [self.tableView reloadData];
-    }];
+    [self reloadInboxMessages];
 }
 
 - (void)appInboxMessageAdded:(OpenBackAppInboxMessage *)message {
-    // Lazy full refresh
-    [self.inbox getAllMessages:^(NSArray<OpenBackAppInboxMessage *> * _Nonnull messages) {
-        self.messages = messages;
-        [self.tableView reloadData];
-    }];
+    [self reloadInboxMessages];
 }
 
 - (void)appInboxMessageExpired:(OpenBackAppInboxMessage *)message {
-    // Lazy full refresh
-    [self.inbox getAllMessages:^(NSArray<OpenBackAppInboxMessage *> * _Nonnull messages) {
-        self.messages = messages;
-        [self.tableView reloadData];
-    }];
+    [self reloadInboxMessages];
 }
 
 #pragma mark - Font Helper
