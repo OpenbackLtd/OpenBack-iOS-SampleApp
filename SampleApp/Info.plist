@@ -2,6 +2,11 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>BGTaskSchedulerPermittedIdentifiers</key>
+	<array>
+		<string>com.openback.bgtask.refresh</string>
+		<string>com.openback.bgtask.check</string>
+	</array>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>
@@ -34,8 +39,6 @@
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
-		
-        
 	</dict>
 	<key>NSBluetoothPeripheralUsageDescription</key>
 	<string>Sample message for if you use bluetooth trigger</string>
@@ -49,9 +52,17 @@
 	<string>Sample message for if you use noise trigger</string>
 	<key>NSMotionUsageDescription</key>
 	<string>Sample message for if you use activity trigger and want to use the co-proc</string>
+	<key>OpenBack</key>
+	<dict>
+		<key>AppCode</key>
+		<string>OEOAASSQCU</string>
+		<key>DebugLevel</key>
+		<integer>5</integer>
+	</dict>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>fetch</string>
+		<string>processing</string>
 		<string>remote-notification</string>
 	</array>
 	<key>UILaunchStoryboardName</key>

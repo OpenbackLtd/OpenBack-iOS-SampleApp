@@ -23,8 +23,7 @@
 
 @interface AppInboxViewController () <UITableViewDelegate, UITableViewDataSource, OpenBackAppInboxDelegate>
 
-@property (strong, nonatomic) OpenBackAppInbox *inbox;
-@property (strong, nonatomic) NSArray<OpenBackAppInboxMessage *> *messages;
+@property (strong, nonatomic) NSArray<OpenBackAppInboxMessage *> *inboxMessages;
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UILabel *noMessagesLabel;
@@ -43,14 +42,13 @@
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.tableView.estimatedRowHeight = 100;
     
-    self.inbox = OpenBack.appInbox;
-    self.inbox.delegate = self;
+    [OpenBack setAppInboxDelegate:self];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self.inbox getAllMessages:^(NSArray<OpenBackAppInboxMessage *> * _Nonnull messages) {
-        self.messages = messages;
+    [OpenBack getAppInboxMessages:^(NSArray<OpenBackAppInboxMessage *> * _Nonnull inboxMessages) {
+        self.inboxMessages = inboxMessages;
         [self.tableView reloadData];
         self.activityIndicator.hidden = YES;
         [self.activityIndicator stopAnimating];
@@ -58,8 +56,8 @@
 }
 
 - (void)reloadInboxMessages {
-    [self.inbox getAllMessages:^(NSArray<OpenBackAppInboxMessage *> * _Nonnull messages) {
-        self.messages = messages;
+    [OpenBack getAppInboxMessages:^(NSArray<OpenBackAppInboxMessage *> * _Nonnull inboxMessages) {
+        self.inboxMessages = inboxMessages;
         [self.tableView reloadData];
     }];
 }
@@ -71,14 +69,14 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    self.noMessagesLabel.hidden = self.messages.count > 0 ? YES : NO;
-    return self.messages.count;
+    self.noMessagesLabel.hidden = self.inboxMessages.count > 0 ? YES : NO;
+    return self.inboxMessages.count;
     return 0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     InboxCell *cell = [tableView dequeueReusableCellWithIdentifier:@"InboxCell" forIndexPath:indexPath];
-    OpenBackAppInboxMessage *message = [self.messages objectAtIndex:indexPath.row];
+    OpenBackAppInboxMessage *message = [self.inboxMessages objectAtIndex:indexPath.row];
     cell.fieldTitle.text = message.title;
     cell.fieldTitle.font = message.isRead ? [self normalFont:cell.fieldTitle.font] : [self boldFont:cell.fieldTitle.font];
     cell.fieldContent.text = message.content;
@@ -95,19 +93,19 @@
 }
 
 - (BOOL)tableView:(UITableView *)tableView shouldHighlightRowAtIndexPath:(NSIndexPath *)indexPath {
-    OpenBackAppInboxMessage *message = [self.messages objectAtIndex:indexPath.row];
+    OpenBackAppInboxMessage *message = [self.inboxMessages objectAtIndex:indexPath.row];
     return message.isActionable || !message.isRead;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    OpenBackAppInboxMessage *message = [self.messages objectAtIndex:indexPath.row];
+    OpenBackAppInboxMessage *message = [self.inboxMessages objectAtIndex:indexPath.row];
     if (message.isActionable) {
-        [self.inbox executeMessage:message completion:^(NSError * _Nullable error) {
+        [OpenBack executeAppInboxMessage:message completion:^(NSError * _Nullable error) {
             [self reloadInboxMessages];
         }];
     } else {
-        [self.inbox markMessageAsRead:message completion:^(NSError * _Nullable error) {
+        [OpenBack markAppInboxMessageAsRead:message completion:^(NSError * _Nullable error) {
             [self reloadInboxMessages];
         }];
     }
@@ -115,7 +113,7 @@
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        [self.inbox removeMessage:self.messages[indexPath.row] completion:^(NSError * _Nullable error) {
+        [OpenBack removeAppInboxMessage:self.inboxMessages[indexPath.row] completion:^(NSError * _Nullable error) {
             [self reloadInboxMessages];
         }];
     }

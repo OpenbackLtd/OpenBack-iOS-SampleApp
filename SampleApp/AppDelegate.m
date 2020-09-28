@@ -6,8 +6,10 @@
 //  Copyright © 2018 OpenBack. All rights reserved.
 //
 
-#import "AppDelegate.h"
 @import OpenBack;
+@import UserNotifications;
+
+#import "AppDelegate.h"
 
 @interface AppDelegate ()
 
@@ -17,26 +19,11 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    NSDictionary *openBackConfig = @{
-        kOBKConfigAppCode: @"OEOAASSQCU",
-        kOBKConfigEnableAlertNotifications: @(YES),
-        kOBKConfigEnableInAppNotifications: @(YES),
-        kOBKConfigEnableRemoteNotifications: @(YES),
-        kOBKConfigRequestAlertNotificationsAuthorization: @(YES),
-        kOBKConfigLogLevel: @(kOBKLogLevelVerbose)
-    };
     
-    NSError *error = nil;
-    if ([OpenBack setupWithConfig:openBackConfig error:&error]) {
-        NSLog(@"OpenBack configured successfully");
-        if ([OpenBack start:&error]) {
-            NSLog(@"OpenBack started successfully");
-        } else {
-            NSLog(@"Oops, something went wrong! %@", error);
-        }
-    } else {
-        NSLog(@"Oops, something went wrong! %@", error);
-    }
+    [UNUserNotificationCenter.currentNotificationCenter requestAuthorizationWithOptions:UNAuthorizationOptionAlert + UNAuthorizationOptionBadge + UNAuthorizationOptionSound completionHandler:^(BOOL granted, NSError * _Nullable error) {
+        NSLog(@"Granted: %@", granted ? @"YES" : @"NO");
+    }];
+    
     return YES;
 }
 

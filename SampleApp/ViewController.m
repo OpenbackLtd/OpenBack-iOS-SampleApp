@@ -30,36 +30,20 @@
 }
 
 - (IBAction)handleTrigger1:(id)sender {
-    NSError *error = nil;
-    if (![OpenBack setValue:@"Bob" forCustomTrigger:kOBKCustomTrigger1 error:&error]) {
-        NSLog(@"Oops! %@", error);
-    }
+    [OpenBack setValue:@"Bob" forCustomSegment:kOBKCustomSegment1];
 }
 
 - (IBAction)handleTrigger2:(id)sender {
-    NSError *error = nil;
-    if (![OpenBack setValue:@(42) forCustomTrigger:kOBKCustomTrigger2 error:&error]) {
-        NSLog(@"Oops! %@", error);
-    }
+    [OpenBack setValue:@(42) forCustomSegment:kOBKCustomSegment2];
 }
 
 - (IBAction)handleTrigger3:(id)sender {
-    NSError *error = nil;
-    if (![OpenBack setValue:@(1.12f) forCustomTrigger:kOBKCustomTrigger3 error:&error]) {
-        NSLog(@"Oops! %@", error);
-    }
+    [OpenBack setValue:@(1.12f) forCustomSegment:kOBKCustomSegment3];
 }
 
 - (IBAction)handleUserInfo:(id)sender {
-    NSDictionary *info = @{
-        kOBKUserInfoFirstName: self.firstNameLabel.text ? : @"",
-        kOBKUserInfoSurname: self.lastNameLabel.text ? : @"",
-    };
-    
-    NSError *error = nil;
-    if (![OpenBack setUserInfo:info error:&error]) {
-        NSLog(@"Oops! %@", error);
-    }
+    [OpenBack setValue:self.firstNameLabel.text ? : @"" forAttribute:kOBKUserFirstName];
+    [OpenBack setValue:self.lastNameLabel.text ? : @"" forAttribute:kOBKUserSurname];
 }
 
 @end

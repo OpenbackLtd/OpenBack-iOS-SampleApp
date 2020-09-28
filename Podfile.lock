@@ -1,16 +1,28 @@
 PODS:
-  - OpenBack (1.8.5)
+  - OpenBack (4.0.0)
+  - OpenBackBluetooth (4.0.0)
+  - OpenBackCoreMotion (4.0.0)
+  - OpenBackLocation (4.0.0)
 
 DEPENDENCIES:
   - OpenBack
+  - OpenBackBluetooth
+  - OpenBackCoreMotion
+  - OpenBackLocation
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  trunk:
     - OpenBack
+    - OpenBackBluetooth
+    - OpenBackCoreMotion
+    - OpenBackLocation
 
 SPEC CHECKSUMS:
-  OpenBack: ac91fe881f0cf748b86188b259e91c900a607fac
+  OpenBack: 32e4eed596c0850dc7a9252d968d75ee954b95a3
+  OpenBackBluetooth: cecc87784a8a42567ef934fe28bc95831cdafb4b
+  OpenBackCoreMotion: 510a918cf3de15f86a85a910cae01bdf441a0de5
+  OpenBackLocation: 046ff5e80e7aec225888534b695fcbb417770a07
 
-PODFILE CHECKSUM: 4d3e28d24503c048fe8026b1693e5d23d54bf124
+PODFILE CHECKSUM: 178be13c904d84629052e74d302b1a9e962c904b
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.9.3
